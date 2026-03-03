@@ -489,7 +489,7 @@
     <div class="ticker-track">
       <span class="ticker-item">Founding Creator Lab</span>
       <span class="ticker-item ticker-sep">✦</span>
-      <span class="ticker-item">6 Weeks · 20 Seats · $997</span>
+      <span class="ticker-item">3 Weeks · 20 Seats · $997</span>
       <span class="ticker-item ticker-sep">✦</span>
       <span class="ticker-item">Applications Open Now</span>
       <span class="ticker-item ticker-sep">✦</span>
@@ -497,7 +497,7 @@
       <span class="ticker-item ticker-sep">✦</span>
       <span class="ticker-item">Founding Creator Lab</span>
       <span class="ticker-item ticker-sep">✦</span>
-      <span class="ticker-item">6 Weeks · 20 Seats · $997</span>
+      <span class="ticker-item">3 Weeks · 20 Seats · $997</span>
       <span class="ticker-item ticker-sep">✦</span>
       <span class="ticker-item">Applications Open Now</span>
       <span class="ticker-item ticker-sep">✦</span>
@@ -519,7 +519,7 @@
         <div class="hero-meta fade-up d2">
           <div class="hero-meta-item">Seats<strong>20</strong></div>
           <div class="hero-meta-item">Investment<strong>$997</strong></div>
-          <div class="hero-meta-item">Duration<strong>6 Weeks</strong></div>
+          <div class="hero-meta-item">Duration<strong>3 Weeks</strong></div>
         </div>
       </div>
 
@@ -732,7 +732,7 @@
         </div>
       </div>
       <div class="not-for">
-        <p><strong>This is not for casual hobbyists.</strong> This is not a passive course you watch on 2x speed. This is a 6-week active build. If accepted, you must be ready to work.</p>
+        <p><strong>This is not for casual hobbyists.</strong> This is not a passive course you watch on 2x speed. This is a 3-week active build. If accepted, you must be ready to work.</p>
       </div>
     </div>
   </section>
@@ -797,23 +797,23 @@
       <h2 class="h2">Answered.</h2>
       <div class="faq-list">
         <div class="faq-item">
-          <div class="faq-q">What exactly is the Founding Creator Lab? <div class="faq-toggle">+</div></div>
+          <div class="faq-q">What exactly is the Founding Creator Lab? </div>
           <div class="faq-a">A 6-week live build intensive. Not a course. Not pre-recorded content. You build your complete 25-episode vertical series inside the VertiCliff™ framework with direct structural feedback. You leave with a deployable blueprint — not notes.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Do I need an idea before I apply? <div class="faq-toggle">+</div></div>
+          <div class="faq-q">Do I need an idea before I apply? </div>
           <div class="faq-a">Yes. Come with a rough concept — a genre, a world, a character. It doesn't need to be fully formed. That's what Week 1 is for. But arrive with something to build.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What is the time commitment each week? <div class="faq-toggle">+</div></div>
+          <div class="faq-q">What is the time commitment each week? </div>
           <div class="faq-a">Plan for 4–6 hours per week. One live session plus independent building work. This is an active build, not passive consumption.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What does "founding pricing" mean? <div class="faq-toggle">+</div></div>
+          <div class="faq-q">What does "founding pricing" mean? </div>
           <div class="faq-a">$997 is the founding cohort price. Future cohorts will cost more as the framework matures. Founding members lock this price permanently for any future VertiCliff products and programs.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Is there a refund policy? <div class="faq-toggle">+</div></div>
+          <div class="faq-q">Is there a refund policy? </div>
           <div class="faq-a">Due to the intensive nature and limited seats, enrollment is non-refundable after the first week. We're selective in applications precisely so every accepted creator is ready to commit.</div>
         </div>
       </div>
@@ -848,11 +848,11 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // FAQ accordion
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-q').addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      item.querySelector('.faq-q').addEventListener('click', function() {
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+        if (!isOpen) { item.classList.add('open'); }
       });
     });
 
@@ -868,4 +868,3 @@
 
     document.querySelectorAll('.fw-cell, .who-card, .offer-week, .stat').forEach(el => {
       el.style.opacity = '0';
-     
