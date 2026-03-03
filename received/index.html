@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Application Received — VertiCliff™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --cream:   #f5f0e8;
+      --cream2:  #ede8de;
+      --cream3:  #e4ddd0;
+      --ink:     #1a1714;
+      --ink2:    #2e2a26;
+      --muted:   #6b6560;
+      --dim:     #9e9890;
+      --faint:   #d8d2c8;
+      --gold:    #9a7b3c;
+      --gold2:   #c4a05a;
+      --green:   #3a6b4a;
+      --border:  #ddd7cd;
+      --border2: #ccc5b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content:'';
+      position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity:0.018; pointer-events:none; z-index:9999;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 0 48px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(245,240,232,0.96);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      font-weight: 500; color: var(--ink);
+      letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none;
+    }
+    .nav-brand span { color: var(--gold); }
+    .nav-back {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--ink); }
+    .nav-back::before { content: '←'; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 800px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+    .section { padding: 80px 0; }
+    .divider { height: 1px; background: var(--border); }
+
+    /* ── CONFIRMATION HERO ── */
+    .confirm-hero {
+      padding: 72px 0 64px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .confirm-icon {
+      width: 56px; height: 56px;
+      border: 1px solid var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      background: rgba(58,107,74,0.06);
+      animation: fadeIn 0.6s ease forwards;
+    }
+    .confirm-icon svg { width: 22px; height: 22px; stroke: var(--green); }
+    .confirm-label {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 16px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+    .confirm-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 6vw, 72px); font-weight: 700;
+      color: var(--ink); line-height: 1.05; margin-bottom: 16px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+    .confirm-sub {
+      font-size: 15px; color: var(--muted); line-height: 1.8;
+      font-weight: 300; max-width: 480px; margin: 0 auto;
+      opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+
+    /* ── WHAT HAPPENS NEXT ── */
+    .steps { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+    .step {
+      display: grid; grid-template-columns: 48px 1fr;
+      gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .step:first-child { border-top: 1px solid var(--border); }
+    .step-num {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--gold); letter-spacing: 0.2em;
+      padding-top: 3px;
+    }
+    .step h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .step p { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+    .step-badge {
+      display: inline-block; margin-top: 8px;
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); background: rgba(154,123,60,0.08);
+      padding: 4px 10px; border: 1px solid rgba(154,123,60,0.2);
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before { content:''; width:20px; height:1px; background:var(--gold); }
+
+    .h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px); font-weight: 700;
+      line-height: 1.1; color: var(--ink); margin-bottom: 12px;
+    }
+    .h2 em { font-style: italic; color: var(--gold); }
+
+    /* ── PREMISE SECTION ── */
+    .premise-box {
+      background: var(--ink); padding: 48px;
+      margin: 40px 0;
+    }
+    .premise-box-label {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold2); margin-bottom: 20px;
+    }
+    .premise-formula {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3vw, 32px); font-weight: 700;
+      color: #fff; line-height: 1.3; margin-bottom: 28px;
+    }
+    .premise-formula em { color: var(--gold2); font-style: italic; }
+    .premise-parts { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .premise-part {
+      display: grid; grid-template-columns: 28px 1fr;
+      gap: 14px; align-items: start;
+    }
+    .pp-num {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      color: var(--gold2); padding-top: 3px; letter-spacing: 0.1em;
+    }
+    .pp-content h5 { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+    .pp-content p { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
+
+    .premise-example {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+    }
+    .premise-example-label {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 12px;
+    }
+    .premise-example-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-style: italic; color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .premise-example-note {
+      font-size: 11px; color: rgba(255,255,255,0.3);
+      margin-top: 8px; line-height: 1.6; font-weight: 300;
+    }
+
+    /* ── PREMISE CHECKLIST ── */
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .checklist li {
+      font-size: 14px; color: var(--muted); display: flex;
+      gap: 14px; align-items: flex-start; line-height: 1.7; font-weight: 300;
+    }
+    .checklist li::before {
+      content: '✦'; color: var(--gold); font-size: 9px;
+      margin-top: 5px; flex-shrink: 0;
+    }
+    .checklist li strong { color: var(--ink); font-weight: 600; }
+
+    /* ── GENRE SECTION ── */
+    .genre-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 40px; }
+    .genre-card {
+      background: var(--cream); padding: 32px;
+      transition: background 0.2s; cursor: default;
+    }
+    .genre-card:hover { background: var(--cream2); }
+    .genre-tag {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 12px;
+    }
+    .genre-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 10px;
+    }
+    .genre-card p { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 16px; }
+    .genre-signals { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .genre-signals li {
+      font-size: 12px; color: var(--muted); display: flex;
+      gap: 8px; align-items: flex-start; font-weight: 300;
+    }
+    .genre-signals li::before { content: '—'; color: var(--border2); flex-shrink: 0; }
+
+    /* ── GENRE PICKER ── */
+    .genre-question {
+      background: var(--cream2); border: 1px solid var(--border);
+      padding: 36px 40px; margin-top: 24px;
+    }
+    .genre-question h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 20px;
+    }
+    .genre-questions-list { display: flex; flex-direction: column; gap: 10px; }
+    .gq-item {
+      font-size: 14px; color: var(--muted); display: flex;
+      gap: 14px; align-items: flex-start; line-height: 1.7; font-weight: 300;
+    }
+    .gq-item::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: var(--cream2); border: 1px solid var(--border);
+      padding: 40px 48px; text-align: center; margin-top: 48px;
+    }
+    .contact-box h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 10px;
+    }
+    .contact-box p { font-size: 14px; color: var(--muted); margin-bottom: 20px; font-weight: 300; line-height: 1.7; }
+    .contact-link {
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      color: var(--gold); text-decoration: none; letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(154,123,60,0.3);
+      transition: border-color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 0; background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); letter-spacing: 0.15em; }
+    .footer-brand strong { color: var(--gold); }
+    .footer-copy { font-size: 11px; color: var(--dim); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* Fallback: show everything if JS doesn't fire */
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; } }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .container { padding: 0 20px; }
+      .confirm-hero { padding: 48px 0 40px; }
+      .premise-box { padding: 28px 24px; }
+      .genre-grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 28px 24px; }
+      .section { padding: 56px 0; }
+      .genre-question { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://lab.verticliff.com" class="nav-brand">Verti<span>Cliff</span>™</a>
+    <a href="https://lab.verticliff.com" class="nav-back">Back to Lab</a>
+  </nav>
+
+  <!-- CONFIRMATION HERO -->
+  <div class="confirm-hero">
+    <div class="container">
+      <div class="confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <div class="confirm-label">Application Received</div>
+      <h1 class="confirm-headline">You're in the queue.</h1>
+      <p class="confirm-sub">Your application is in our hands. We review every submission personally and respond within 48 hours.</p>
+    </div>
+  </div>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label reveal">What Happens Next</div>
+      <h2 class="h2 reveal">Three steps to<br/><em>your seat.</em></h2>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div>
+            <h4>We Review Your Application</h4>
+            <p>Every application is read personally. We're looking for commitment, a real idea, and readiness to build — not just interest.</p>
+            <span class="step-badge">Within 48 hours</span>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <div>
+            <h4>You Receive Your Acceptance Email</h4>
+            <p>If accepted, you'll get an email with your enrollment link and payment details. Check the inbox you applied with.</p>
+            <span class="step-badge">Sent within 48 hours</span>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <div>
+            <h4>Secure Your Seat Within 48 Hours</h4>
+            <p>Once accepted, you have 48 hours to complete enrollment. After that your seat opens to the next applicant on the waitlist. No exceptions.</p>
+            <span class="step-badge">48-hour window</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHILE YOU WAIT — PREMISE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label reveal">While You Wait</div>
+      <h2 class="h2 reveal">Start here.<br/><em>Before Session 1.</em></h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:300;margin-top:12px;max-width:580px;" class="reveal">Don't wait for the class to start. The creators who get the most out of the lab come in with these two things already worked out. Here's how to do both.</p>
+
+      <!-- PREMISE -->
+      <div style="margin-top:56px;">
+        <div class="section-label reveal">Part 01</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:12px;" class="reveal">Write Your <em style="color:var(--gold);font-style:italic;">Premise Line</em></h3>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:300;max-width:560px;" class="reveal">A premise line is the single sentence that contains your entire series. This is the single sentence that contains your entire series. If you can't compress your story to its core elements, you don't yet know what your story is. For vertical series, this sentence becomes the engine that drives every cliff, every episode, and every character decision across 25 episodes.</p>
+
+        <div class="premise-box reveal">
+          <div class="premise-box-label">The VertiCliff™ Premise Method</div>
+          <p class="premise-formula">When <em>[a specific character]</em> is <em>[the push — what forces them into action]</em>, they must <em>[pursue a concrete goal]</em> — against <em>[an opponent who wants the same thing]</em>.</p>
+
+          <div class="premise-parts">
+            <div class="premise-part">
+              <div class="pp-num">01</div>
+              <div class="pp-content">
+                <h5>The Push — What sets the story in motion</h5>
+                <p>One specific event forces your protagonist into action. Not a backstory. Not a mood. A moment. The day everything changes. This is what launches Episode 1.</p>
+              </div>
+            </div>
+            <div class="premise-part">
+              <div class="pp-num">02</div>
+              <div class="pp-content">
+                <h5>The Goal — What they are chasing</h5>
+                <p>Your protagonist wants one concrete thing — something that can be won or lost by the final episode. The goal must be specific enough to fail at. "Justice" is not a goal. "Proving her brother didn't pull the trigger" is.</p>
+              </div>
+            </div>
+            <div class="premise-part">
+              <div class="pp-num">03</div>
+              <div class="pp-content">
+                <h5>The Opponent — Who is fighting for the same thing</h5>
+                <p>Your antagonist isn't just an obstacle — they want the same goal your protagonist wants, but for different reasons. That shared desire is what creates real, sustained conflict across 25 episodes.</p>
+              </div>
+            </div>
+            <div class="premise-part">
+              <div class="pp-num">04</div>
+              <div class="pp-content">
+                <h5>The Change — Who your character must become</h5>
+                <p>By the final episode your protagonist must be fundamentally different from who they were in Episode 1. What does this story force them to confront about themselves? That change is your series arc.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="premise-example">
+            <div class="premise-example-label">Classic Example — Tootsie</div>
+            <p class="premise-example-text">"When an actor can't get work, he disguises himself as a woman to land a role — only to fall in love with his co-star and be forced to become the man she deserves."</p>
+            <p class="premise-example-note">Push: can't get work. Goal: land the role. Opponent: his own dishonesty. Change: becomes a better man. One sentence — entire story.</p>
+          </div>
+        </div>
+
+        <ul class="checklist reveal">
+          <li><strong>One sentence only.</strong> If it takes two sentences, the premise isn't clear yet. Keep cutting.</li>
+          <li><strong>The push must be specific.</strong> "Life gets hard" is not a kicker. "The night his business partner disappears with the money" is.</li>
+          <li><strong>The opponent must want the same thing.</strong> Shared desire creates conflict that can sustain 25 episodes. A simple villain can't.</li>
+          <li><strong>The change must be earned.</strong> Whatever your protagonist becomes by Episode 25 — it must be impossible without everything that happened before it.</li>
+          <li><strong>Read it out loud.</strong> If it doesn't make someone ask "what happens next?" — rewrite it.</li>
+        </ul>
+      </div>
+
+      <!-- GENRE -->
+      <div style="margin-top:72px;">
+        <div class="section-label reveal">Part 02</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--ink);margin-bottom:12px;" class="reveal">Identify Your <em style="color:var(--gold);font-style:italic;">Genre</em></h3>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:300;max-width:560px;" class="reveal">Your genre isn't just a category. In VertiCliff™ your genre determines which 8 beats get layered on top of your 22 universal beats. The wrong genre for your premise creates structural friction from Episode 1. Here are the three genres currently in the framework — and how to know which one fits your story.</p>
+
+        <div class="genre-grid reveal">
+          <div class="genre-card">
+            <div class="genre-tag">Genre 01</div>
+            <h4>Crime</h4>
+            <p>A crime is committed, discovered, or covered up — and your protagonist is caught in the middle of the truth.</p>
+            <ul class="genre-signals">
+              <li>Your story involves deception, investigation, or justice</li>
+              <li>Someone knows something they shouldn't</li>
+              <li>The obstacle is another person protecting a secret</li>
+              <li>Every episode someone gets closer to — or further from — the truth</li>
+            </ul>
+          </div>
+          <div class="genre-card">
+            <div class="genre-tag">Genre 02</div>
+            <h4>Thriller</h4>
+            <p>Time is running out. The stakes are physical, immediate, and escalating — and survival is not guaranteed.</p>
+            <ul class="genre-signals">
+              <li>Your story has a ticking clock or point of no return</li>
+              <li>The danger is real and immediate — not emotional or relational</li>
+              <li>Your protagonist is being hunted, trapped, or manipulated</li>
+              <li>Every episode the threat gets closer and the options get fewer</li>
+            </ul>
+          </div>
+          <div class="genre-card">
+            <div class="genre-tag">Genre 03</div>
+            <h4>Love</h4>
+            <p>Two people want each other — but something keeps pulling them apart, and every episode tests whether love survives.</p>
+            <ul class="genre-signals">
+              <li>The core tension is emotional — not physical or criminal</li>
+              <li>The obstacle is internal, relational, or circumstantial</li>
+              <li>Your cliffs are emotional reversals — hope then doubt, closeness then distance</li>
+              <li>Every episode the relationship shifts — forward or backward</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="genre-question reveal">
+          <h4>Not sure which genre fits? Ask yourself these questions.</h4>
+          <div class="genre-questions-list">
+            <div class="gq-item">What is the main source of tension in your story — a secret, a threat, or a feeling?</div>
+            <div class="gq-item">What does your audience feel at the end of each episode — suspicious, scared, or hopeful?</div>
+            <div class="gq-item">What does your protagonist want most — the truth, safety, or love?</div>
+            <div class="gq-item">If you had to describe your series in one word — is it dark, tense, or emotional?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-box reveal">
+        <h4>Questions before your review?</h4>
+        <p>Reply directly. Every email goes to Ron.<br/>We respond within 24 hours.</p>
+        <a href="/cdn-cgi/l/email-protection#4a3825242f262623253e0a30332d2426642325" class="contact-link"><span class="__cf_email__" data-cfemail="a4d6cbcac1c8c8cdcbd0e4deddc3cac88acdcb">[email&#160;protected]</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><strong>VERTICLIFF™</strong> · Founding Creator Lab</div>
+        <div class="footer-copy">© 2026 VertiCliff · <a href="/cdn-cgi/l/email-protection#addfc2c3c8c1c1c4c2d9edd7d4cac3c183c4c2" style="color:var(--dim);text-decoration:none;"><span class="__cf_email__" data-cfemail="0e7c61606b626267617a4e7477696062206761">[email&#160;protected]</span></a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scr
